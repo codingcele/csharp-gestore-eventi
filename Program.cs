@@ -19,6 +19,7 @@ namespace Eventi
             sherwood.DisdiciPosti(6);
             //sherwood.DisdiciPosti(7);
             //sherwood.DisdiciPosti(8);
+            sherwood.ToString();
         }
     }
 }

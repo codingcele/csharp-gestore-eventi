@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Exceptions;
 
 namespace Eventi
 {
@@ -97,6 +96,12 @@ namespace Eventi
                 BookedSpots -= nrUndoSpots;
                 Console.WriteLine(Titolo + ": " + BookedSpots);
             }
+        }
+
+        public override string ToString()
+        {;
+            Console.WriteLine(DataEvento + " - " + Titolo);
+            return DataEvento + Titolo;
         }
 
     }
