@@ -73,6 +73,8 @@ namespace Eventi
 
             ProgrammaEventi.PrintList(listaData);
 
+            newProgramma.EmptyEventList();
+
         }
     }
 }

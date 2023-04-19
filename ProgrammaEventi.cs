@@ -38,7 +38,7 @@ namespace Eventi
             string ret = "";
             foreach (Evento evento in eventList)
             {
-                ret += evento.DataEvento + " - " + evento.Titolo + "\n";
+                ret += evento.ToString() + "\n";
             }
             Console.WriteLine(ret);
             return ret;
@@ -59,7 +59,7 @@ namespace Eventi
             string ret = Titolo + "\n";
             foreach (Evento evento in Eventi)
             {
-                ret += evento.DataEvento + " - " + evento.Titolo + "\n";
+                ret += evento.ToString() + "\n";
             }
             Console.WriteLine("Ecco il tuo programma eventi:");
             Console.WriteLine(ret);

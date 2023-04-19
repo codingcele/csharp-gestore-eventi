@@ -119,8 +119,7 @@ namespace Eventi
 
         public override string ToString()
         {
-            Console.WriteLine(DataEvento + " - " + Titolo);
-            return DataEvento + Titolo;
+            return DataEvento + " - " + Titolo;
         }
 
     }
