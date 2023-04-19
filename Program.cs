@@ -21,23 +21,57 @@ namespace Eventi
             //sherwood.DisdiciPosti(8);
             //sherwood.ToString();
 
-            Console.Write("Inserisci il nome dell'evento: ");
-            string titolo = Console.ReadLine();
+            //Console.Write("Inserisci il nome dell'evento: ");
+            //string titolo = Console.ReadLine();
 
-            Console.Write("Inserisci la data dell'evento (gg/mm/yyyy): ");
-            string data = Console.ReadLine();
+            //Console.Write("Inserisci la data dell'evento (gg/mm/yyyy): ");
+            //string data = Console.ReadLine();
 
-            Console.Write("Inserisci il numero di posti totali: ");
-            int nrTotPosti = int.Parse(Console.ReadLine());
+            //Console.Write("Inserisci il numero di posti totali: ");
+            //int nrTotPosti = int.Parse(Console.ReadLine());
 
-            Evento NewEvent = new Evento(titolo, data, nrTotPosti);
+            //Evento NewEvent = new Evento(titolo, data, nrTotPosti);
 
-            Console.Write("Quanti posti desideri prenotare? ");
-            int nrPostiPrenotazione = int.Parse(Console.ReadLine());
+            //Console.Write("Quanti posti desideri prenotare? ");
+            //int nrPostiPrenotazione = int.Parse(Console.ReadLine());
 
-            NewEvent.PrenotaPosti(nrPostiPrenotazione);
+            //NewEvent.PrenotaPosti(nrPostiPrenotazione);
 
-            NewEvent.DisdiciPosti();
+            //NewEvent.DisdiciPosti();
+
+            Console.Write("Inserisci il nome del tuo programma eventi: ");
+            string titoloProgramma = Console.ReadLine();
+
+            Console.Write("Inserisci il numero di eventi da inserire: ");
+            int nrEventiProgramma = int.Parse(Console.ReadLine());
+
+            ProgrammaEventi newProgramma = new ProgrammaEventi(titoloProgramma);
+
+            while (newProgramma.Eventi.Count != nrEventiProgramma)
+            {
+                Console.Write("Inserisci il nome del " + (newProgramma.Eventi.Count + 1) + "° evento: ");
+                string titolo = Console.ReadLine();
+
+                Console.Write("Inserisci la data dell'evento (gg/mm/yyyy): ");
+                string data = Console.ReadLine();
+
+                Console.Write("Inserisci il numero di posti totali: ");
+                int nrTotPosti = int.Parse(Console.ReadLine());
+
+                Evento NewEvent = new Evento(titolo, data, nrTotPosti);
+
+                newProgramma.AddEvent(NewEvent);
+
+            }
+            newProgramma.CountEvents();
+            newProgramma.ShowProgram();
+
+            Console.Write("Inserisci una data per sapere che eventi ci saranno (gg/mm/yyyy): ");
+            string dataQuery = Console.ReadLine();
+            DateOnly.TryParseExact(dataQuery, "d", out var dataFormat);
+            List<Evento> listaData = newProgramma.ReturnEventList(dataFormat);
+
+            ProgrammaEventi.PrintList(listaData);
 
         }
     }
