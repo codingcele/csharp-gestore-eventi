@@ -18,7 +18,6 @@ namespace Eventi
             if (titolo != string.Empty) //controllo che il titolo non sia vuoto
             {
                 Titolo = titolo;
-                Console.WriteLine("Titolo: " + titolo);
             }
             else
                 throw new ArgumentNullException(nameof(titolo)); //throw exception se il titolo è vuoto
@@ -29,7 +28,6 @@ namespace Eventi
             if (data > dataCorrente) //controllo che la data dell'evento non sia passata
             {
                 DataEvento = DateOnly.ParseExact(dataEvento, "d");
-                Console.WriteLine("Data evento: " + dataEvento);
             }  
             else
             {
@@ -39,7 +37,6 @@ namespace Eventi
             if (maxCap > 0) //controllo che la capacità massima dell'evento sia positiva
             {
                 MaxCap = maxCap;
-                Console.WriteLine("Capienza massima: " + maxCap);
             }
             else
             {
@@ -47,7 +44,6 @@ namespace Eventi
             }
 
             BookedSpots = 0; // Imposta il valore di default di BookedSpots a 0
-            Console.WriteLine("Posti prenotati: " + BookedSpots);
         }
 
         public void PrenotaPosti(int nrBookedSpots) 
@@ -74,12 +70,19 @@ namespace Eventi
             else
             {
                 BookedSpots += nrBookedSpots;
-                Console.WriteLine(Titolo + ": " + BookedSpots);
+                Console.WriteLine();
+                Console.WriteLine("Numero di posti prenotati = " + BookedSpots);
+                Console.WriteLine("Numero di posti disponibili = " + (MaxCap - BookedSpots));
             } 
         }
 
-        public void DisdiciPosti(int nrUndoSpots)
+        public void DisdiciPosti()
         {
+            Console.WriteLine();
+            Console.Write("Vuoi disdire dei posti (si/no)? ");
+            string ans = Console.ReadLine();
+            int nrUndoSpots = 0;
+
             DateTime dataOraCorrente = DateTime.Now;
             DateOnly dataCorrente = new DateOnly(dataOraCorrente.Year, dataOraCorrente.Month, dataOraCorrente.Day);
             if (DataEvento < dataCorrente) //setto la condizione per la quale la data dell'evento sia passata
@@ -93,13 +96,29 @@ namespace Eventi
             }
             else
             {
-                BookedSpots -= nrUndoSpots;
-                Console.WriteLine(Titolo + ": " + BookedSpots);
+                if (ans == "si")
+                {
+                    Console.Write("Indica il numero di posti da disdire: ");
+                    int nrSpots = int.Parse(Console.ReadLine());
+                    nrUndoSpots += nrSpots;
+                    BookedSpots -= nrUndoSpots;
+                    Console.WriteLine();
+                    Console.WriteLine("Numero di posti prenotati = " + BookedSpots);
+                    Console.WriteLine("Numero di posti disponibili = " + (MaxCap - BookedSpots));
+                    DisdiciPosti();
+                }
+                else
+                {
+                    Console.WriteLine("Ok va bene!");
+                    Console.WriteLine();
+                    Console.WriteLine("Numero di posti prenotati = " + BookedSpots);
+                    Console.WriteLine("Numero di posti disponibili = " + (MaxCap - BookedSpots));
+                }
             }
         }
 
         public override string ToString()
-        {;
+        {
             Console.WriteLine(DataEvento + " - " + Titolo);
             return DataEvento + Titolo;
         }
