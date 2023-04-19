@@ -8,8 +8,8 @@ namespace Eventi
 {
     public class Evento
     {
-        private string Titolo { get; set; } //Titolo con SIA get che set
-        private DateOnly DataEvento { get; set; } //DataEvento con SIA get che set
+        public string Titolo { get; set; } //Titolo con SIA get che set
+        public DateOnly DataEvento { get; set; } //DataEvento con SIA get che set
         private int MaxCap { get; } //MaxCap con SOLO GET
         private int BookedSpots { get; set; } //BookedSpots con SIA get che set
 
